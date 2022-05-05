@@ -7,4 +7,7 @@ This package fills the gap between getting raw images from a camera driver and h
 
 For more information on this metapackage and underlying packages, please see [the ROS wiki entry](http://wiki.ros.org/image_pipeline).
 
-For examples, see the [image_pipeline tutorials entry](http://wiki.ros.org/image_pipeline/Tutorials) on the ROS Wiki.
+This version is based on the clone of ros2 branch with some fixes:
+* fix the *handle_monocular* function in *camera_calibrator* with the line 'checkerboard_flags=self._checkerboard_flags'
+* fix the 'No fisheye_flags' error by adding 'fisheye_flags = 0' at the end of the '__init__()' function under CalibrationNode class 
+* save the calibration data into the HOME/tutorial_ws instead of /tmp folder

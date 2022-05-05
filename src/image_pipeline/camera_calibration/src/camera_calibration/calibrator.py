@@ -237,19 +237,14 @@ class Calibrator():
             checkerboard_flags=cv2.CALIB_CB_FAST_CHECK, max_chessboard_speed = -1.0):
         # Ordering the dimensions for the different detectors is actually a minefield...
         if pattern == Patterns.Chessboard:
-            print("here in chessboard", Patterns.Chessboard)
             # Make sure n_cols > n_rows to agree with OpenCV CB detector output
             self._boards = [ChessboardInfo(max(i.n_cols, i.n_rows), min(i.n_cols, i.n_rows), i.dim) for i in boards]
         elif pattern == Patterns.ACircles:
-            print("here in Acircles")
             # 7x4 and 4x7 are actually different patterns. Assume square-ish pattern, so n_rows > n_cols.
             self._boards = [ChessboardInfo(min(i.n_cols, i.n_rows), max(i.n_cols, i.n_rows), i.dim) for i in boards]
         elif pattern == Patterns.Circles:
-            print("here in Circles")
             # We end up having to check both ways anyway
             self._boards = boards
-        else:
-            print("here in others", pattern)
 
         # Set to true after we perform calibration
         self.calibrated = False
