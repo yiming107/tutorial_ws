@@ -56,18 +56,18 @@ class MinimalImageSubscriber(Node):
         result_frame = copy.deepcopy(frame)
         # perform face detection
         faces = self.detector.detect_faces(frame)
-        for face in faces:
+        for face_count, face in enumerate(faces):
             bounding_box = face['box']
             cv2.rectangle(result_frame,
                           (bounding_box[0], bounding_box[1]),
                           (bounding_box[0] + bounding_box[2], bounding_box[1] + bounding_box[3]),
                           (0, 155, 255),
                           2)
-
-        # save/visualise the image frame
-        if self.save_path is not None:
-            file_name = os.path.join(self.save_path, 'frame%06d.png' % self.i)
-            cv2.imwrite(file_name, frame)
+            face_image = frame[bounding_box[1]:bounding_box[1] + bounding_box[3], bounding_box[0]:bounding_box[0] + bounding_box[2]]
+            # if save faces
+            if self.save_path is not None:
+                file_name = os.path.join(self.save_path, 'face%06d_%03d.png' % (self.i, face_count))
+                cv2.imwrite(file_name, face_image)
         self.i += 1
         cv2.imshow("My webcam", result_frame)
         cv2.waitKey(1)
