@@ -9,10 +9,10 @@ def generate_launch_description():
             name='image_talker'
         ),
         Node(
-            package='camera_calibration',
-            executable='cameracalibrator',
-            name='calibrator',
-            remappings= [('/image', '/web_cam')],
-            arguments = ['--size', '8x6', '--square', '0.023']
+            package='py_sub',
+            executable='image_aruco_estimator',
+            name='image_aruco_estimator',
+            output='screen',
+            arguments = ['--calibration', '/home/yiming/tutorial_ws/calibrationdata/ost.yaml', '--type', 'DICT_4X4_50']
         )
     ])

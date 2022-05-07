@@ -23,6 +23,7 @@ setup(
         'talker = py_pub.publisher_member_function:main',
         'student_talker = py_pub.student_publisher_function:main',
         'image_talker = py_pub.image_publisher_function:main',
+        'tf2_static_broadcaster = py_pub.publisher_tf2_static_broadcaster_function:main',
         ],
     },
 )

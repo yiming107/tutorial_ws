@@ -24,6 +24,8 @@ setup(
         'image_listener = py_sub.image_subscriber_function:main',
         'student_listener = py_sub.student_subscriber_function:main',
         'image_listener_processor = py_sub.image_subscriber_processing_function:main',
+        'image_aruco_estimator = py_sub.image_subscriber_aruco_function:main',
+        'image_aruco_tf2_broadcaster = py_sub.image_subscriber_aruco_tf2_broadcast_function:main'
         ],
     },
 )
