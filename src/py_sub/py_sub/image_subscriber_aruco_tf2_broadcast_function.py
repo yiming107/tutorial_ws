@@ -67,7 +67,7 @@ class MinimalImageArucoSubscriber(Node):
         self.tf_broadcaster = TransformBroadcaster(self)  # initialize the transform broadcaster
         self.cvbr = CvBridge()
         self.i = 0
-        # path of the yaml file of calibration data
+
         self.aruco_type_ = aruco_type
         self.aruco_dict_ = cv2.aruco.Dictionary_get(self.aruco_type_)
         self.parameters_ = cv2.aruco.DetectorParameters_create()
@@ -130,8 +130,7 @@ class MinimalImageArucoSubscriber(Node):
 
         # convert rvec to rotation matrix, then quaternion
         transform_mtx = np.identity(4)
-        transform_mtx[:3,:3], _ = cv2.Rodrigues(rvec)
-        # rotation in z axis from the message
+        transform_mtx[:3, :3], _ = cv2.Rodrigues(rvec)
         q = tf.quaternion_from_matrix(transform_mtx)
         msg.transform.rotation.x = q[0]
         msg.transform.rotation.y = q[1]
@@ -146,8 +145,8 @@ def main(argv=sys.argv[1:]):
     ap = argparse.ArgumentParser()
     ap.add_argument('-c', '--calibration', required=True, help="Path to the calibration data (yaml file)")
     ap.add_argument('-t', '--type', type=str, default="DICT_4X4_50", help="Type of ArUCo tag to detect")
-    # to avoid ros arguments
 
+    # to avoid ros arguments
     args = ap.parse_args(rclpy.utilities.remove_ros_args(args=argv))
     args = vars(args)
 
