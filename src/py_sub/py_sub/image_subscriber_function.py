@@ -19,6 +19,8 @@ from datetime import datetime
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
 import cv2
+
+
 class MinimalImageSubscriber(Node):
     def __init__(self):
         super().__init__('minimal_image_subscriber')

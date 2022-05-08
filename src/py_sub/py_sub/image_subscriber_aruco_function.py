@@ -61,7 +61,7 @@ class MinimalImageArucoSubscriber(Node):
         self.subscription  # prevent unused variable warning
         self.cvbr = CvBridge()
         self.i = 0
-        # path of the yaml file of calibration data
+
         self.aruco_type_ = aruco_type
         self.aruco_dict_ = cv2.aruco.Dictionary_get(self.aruco_type_)
         self.parameters_ = cv2.aruco.DetectorParameters_create()
@@ -106,8 +106,8 @@ def main(argv=sys.argv[1:]):
     ap = argparse.ArgumentParser()
     ap.add_argument('-c', '--calibration', required=True, help="Path to the calibration data (yaml file)")
     ap.add_argument('-t', '--type', type=str, default="DICT_4X4_50", help="Type of ArUCo tag to detect")
-    # to avoid ros arguments
 
+    # to avoid ros arguments
     args = ap.parse_args(rclpy.utilities.remove_ros_args(args=argv))
     args = vars(args)
 

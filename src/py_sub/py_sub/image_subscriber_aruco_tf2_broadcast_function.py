@@ -163,9 +163,6 @@ def main(argv=sys.argv[1:]):
     rclpy.init()
     minimal_image_aruco_subscriber = MinimalImageArucoSubscriber(aruco_type, intrinsics, distortion)
     rclpy.spin(minimal_image_aruco_subscriber)
-    # Destroy the node explicitly
-    # (optional - otherwise it will be done automatically
-    # when the garbage collector destroys the node object)
     minimal_image_aruco_subscriber.destroy_node()
     rclpy.shutdown()
 
